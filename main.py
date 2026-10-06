@@ -1,15 +1,34 @@
 import json
 
 from analyzer.analyzer import analyze_file
+from privacy.sanitizer import sanitize_analysis
 
 
-result = analyze_file(
+# --------------------------------------------------
+# Analyze the source code locally
+# --------------------------------------------------
+
+raw_result = analyze_file(
     "test_code/sample.py"
 )
 
+
+# --------------------------------------------------
+# Apply privacy protection
+# --------------------------------------------------
+
+safe_result = sanitize_analysis(
+    raw_result
+)
+
+
+# --------------------------------------------------
+# Display privacy-safe result
+# --------------------------------------------------
+
 print(
     json.dumps(
-        result,
+        safe_result,
         indent=2
     )
 )
